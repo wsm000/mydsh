@@ -1,0 +1,16 @@
+Repo Watch NOTICE
+
+agent.cordis.yml derives from the MIT-licensed compositions of:
+
+1. DeepSeek Harness Standard preset — deepseek-ai/deepseek-harness (MIT)
+   https://github.com/deepseek-ai/deepseek-harness
+   (plan mode, compaction, delegation, and remaining model-facing rows)
+
+2. yjh051108/dsh-router-standard (MIT)
+   https://github.com/yjh051108/dsh-router-standard
+   (the standing-mount composition structure and its agent-plane comments)
+
+The daemon plugin (watchdog.mjs), the pure logic (watch-core.mjs), the tests,
+and this preset's persona/description are original work, MIT-licensed as a
+whole. The watched repository (yjh051108/dsh-routing-suite) is a third-party
+project monitored by this preset, not a dependency.

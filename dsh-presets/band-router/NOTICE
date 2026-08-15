@@ -1,0 +1,23 @@
+Band Router NOTICE
+
+This preset derives from two MIT-licensed works and reproduces portions of
+them in adapted form:
+
+1. dsh-router-standard v0.1.0 — yjh051108/dsh-router-standard (MIT)
+   https://github.com/yjh051108/dsh-router-standard
+   - The measured methodology: behavior-band quantization (spec/transition/
+     react), weak-band internal routing, first-turn tool anchoring, near-field
+     guidance, mode isolation.
+   - The persona texts (SPEC_PERSONA / MIXED_PERSONA / REACT_PERSONA /
+     WEAK_PRO / WEAK_LIGHT), which are the measured optima of that research;
+     changing the wording would discard the measured property.
+
+2. DeepSeek Harness Standard preset — deepseek-ai/deepseek-harness (MIT)
+   https://github.com/deepseek-ai/deepseek-harness
+   - agent.cordis.yml derives from the Standard preset composition (rc.6):
+     plan mode, compaction, delegation, and remaining model-facing rows.
+
+Original copyrights remain with their respective owners. This preset's own
+contributions (margin-gated classification, model-family detection,
+requirement-density complexity heuristic, override persistence, guide
+wording, tooling and tests) are MIT-licensed as a whole.

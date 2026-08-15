@@ -1,0 +1,2 @@
+name: Repo Watch (experimental)
+description: 每 3 天自动巡检 GitHub 仓库 yjh051108/dsh-routing-suite（stars/issue/release/推送变化），变化写入巡检日志；开会话时模型自动汇报最新动态，支持 watch_status / watch_now。
