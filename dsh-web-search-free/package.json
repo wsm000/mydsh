@@ -1,0 +1,43 @@
+{
+  "name": "dsh-web-search-free",
+  "description": "Keyless free web search provider (multi-backend: Bing -> Mojeek -> Baidu -> So.com) for the DeepSeek Harness web capability seam (ctx.web)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "tests",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "web-search",
+    "search-provider",
+    "bing",
+    "mojeek",
+    "baidu",
+    "crawler"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsm000/mydsh.git",
+    "directory": "dsh-web-search-free"
+  },
+  "homepage": "https://github.com/wsm000/mydsh/tree/main/dsh-web-search-free",
+  "bugs": {
+    "url": "https://github.com/wsm000/mydsh/issues"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-web": "*"
+  }
+}
