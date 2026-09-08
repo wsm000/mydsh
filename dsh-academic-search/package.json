@@ -1,0 +1,34 @@
+{
+  "name": "dsh-academic-search",
+  "description": "Academic paper search provider (arXiv, Semantic Scholar, PubMed, CORE) for DeepSeek Harness web capability (ctx.web)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "tests",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "academic-search",
+    "paper-search",
+    "arxiv",
+    "semantic-scholar",
+    "pubmed",
+    "research"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-web": "*"
+  }
+}

@@ -1,0 +1,40 @@
+/**
+ * The hand-written Remote contribution's boundary discipline: the descriptor
+ * is strict, its codecs accept the exact wire values the host emits, and
+ * reject malformed ones. This mirrors what the Client Gateway's own
+ * `requireStrictDescriptor` demands at mount time.
+ */
+import { describe, expect, it } from 'vitest'
+import { AT_FILE_REMOTE } from '../src/client/remote.ts'
+
+describe('AT_FILE_REMOTE', () => {
+  it('owns exactly the search endpoint', () => {
+    expect(AT_FILE_REMOTE.package).toBe('dsh-at-file')
+    expect(AT_FILE_REMOTE.descriptors.map(descriptor => `${descriptor.namespace}/${descriptor.method}`))
+      .toEqual(['atFile/search'])
+  })
+
+  it('declares strict codecs on every parameter and result', () => {
+    for (const descriptor of AT_FILE_REMOTE.descriptors) {
+      expect(descriptor.result.mode).toBe('strict')
+      for (const parameter of descriptor.parameters) expect(parameter.codec.mode).toBe('strict')
+    }
+  })
+
+  it('routes search through the agent lookup with a trailing signal', () => {
+    const search = AT_FILE_REMOTE.descriptors[0]!
+    expect(search.invocation).toEqual({ kind: 'direct' })
+    expect(search.cancellation).toEqual({ parameter: 'signal' })
+    expect(search.parameters).toHaveLength(1)
+    expect(search.parameters[0]).toMatchObject({ name: 'agent', wire: 'agentId', source: 'lookup', lookup: 'agent' })
+  })
+
+  it('search codecs accept host entries (files and directories) and reject malformed rows', () => {
+    const schema = AT_FILE_REMOTE.descriptors[0]!.result.schema as { parse(value: unknown): unknown }
+    expect(schema.parse([{ path: '/ws/a.ts', relative: 'a.ts', kind: 'file' }, { path: '/ws/src', relative: 'src', kind: 'dir' }]))
+      .toEqual([{ path: '/ws/a.ts', relative: 'a.ts', kind: 'file' }, { path: '/ws/src', relative: 'src', kind: 'dir' }])
+    expect(() => schema.parse([{ path: '/ws/a.ts', relative: 'a.ts' }])).toThrow()
+    expect(() => schema.parse([{ path: '', relative: 'a.ts', kind: 'file' }])).toThrow()
+    expect(() => schema.parse('nope')).toThrow()
+  })
+})
