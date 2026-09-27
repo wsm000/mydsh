@@ -1,0 +1,13 @@
+{
+  "name": "dsh-model-selector-3tier",
+  "version": "0.1.0",
+  "description": "3-tier model selector for DSH (Provider → Model → Effort)",
+  "main": "lib/index.js",
+  "client": "lib/client.js",
+  "dsh": {
+    "plugin": {
+      "name": "dsh-model-selector-3tier",
+      "description": "3-tier model selector for DSH"
+    }
+  }
+}

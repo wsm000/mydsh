@@ -1,0 +1,13 @@
+{
+  "name": "dsh-model-provider-filter",
+  "version": "0.1.0",
+  "description": "Restore three-level model selection: Provider -> Model -> Effort",
+  "main": "lib/index.js",
+  "dsh": {
+    "profile": {
+      "bundles": []
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

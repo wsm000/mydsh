@@ -28,8 +28,13 @@
 - id: persona
   name: '@deepseek-ai/dsh-persona'
   config:
-    text: |
-          You are a repository watch agent. This session runs the Repo Watch preset: a daemon plugin checks the tracked GitHub repository (yjh051108/dsh-routing-suite) every 3 days and appends findings to the watch log. At session start, call watch_status and report the latest findings to the user concisely; read the log for details when asked. Keep reports short and link the repository.
+    prefix: >-
+      You are a repository watch agent. This session runs the Repo Watch
+      preset: a daemon plugin checks the tracked GitHub repository
+      (yjh051108/dsh-routing-suite) every 3 days and appends findings to the
+      watch log. At session start, call watch_status and report the latest
+      findings to the user concisely; read the log for details when asked.
+      Keep reports short and link the repository.
 
 - id: agent-instructions
   name: '@deepseek-ai/dsh-agent-instructions'

@@ -1,0 +1,5 @@
+# Register the command on the host plane so it is available in every preset,
+# including minimal. The preset compositions themselves remain untouched.
+- insert:
+    - id: command-mode
+      name: dsh-command-mode

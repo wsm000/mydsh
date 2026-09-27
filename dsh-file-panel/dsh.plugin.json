@@ -1,0 +1,12 @@
+{
+  "name": "dsh-file-panel",
+  "description": "Workspace file browser and text editor for the DeepSeek Harness web GUI",
+  "version": "0.1.0",
+  "entry": {
+    "name": "dsh-file-panel",
+    "inject": []
+  },
+  "client": {
+    "platform": "web"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "dsh-session-cost",
+  "name": "dsh-session-cost",
+  "title": "Session Cost & Peak/Valley",
+  "description": "会话费用估算、步数与 DeepSeek 峰谷时段指示",
+  "type": "plugin"
+}

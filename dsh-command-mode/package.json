@@ -1,0 +1,30 @@
+{
+  "name": "dsh-command-mode",
+  "description": "Persistent, session-local /mode command for DeepSeek Harness agent presets",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "src",
+    "tests",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-agent-presets": "*",
+    "@deepseek-ai/dsh-commands": "*"
+  }
+}

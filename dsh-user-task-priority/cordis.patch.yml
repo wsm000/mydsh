@@ -1,0 +1,4 @@
+# Keep the real user's task after injected host/plugin context.
+- insert:
+    - id: dsh-user-task-priority
+      name: dsh-user-task-priority

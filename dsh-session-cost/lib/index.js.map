@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["/**\n * dsh-session-cost host entry \u2014 a deliberate no-op.\n *\n * This plugin is client-only: it renders a status chip in the web GUI from\n * session projections and the local clock, with no host service and no wire\n * traffic. The host apply exists only so the profile Loader forms an active\n * entry fiber for the package, which is what the client-module registry scans\n * to discover and serve the `dsh.client` bundle (`/plugins/dsh-session-cost/client.js`).\n */\nimport type { Context } from '@deepseek-ai/cordis'\n\n/** Cordis plugin name (the Loader entry and client bundle id). */\nexport const name = 'dsh-session-cost'\n\n/** No host services are required. */\nexport const inject: string[] = []\n\n/** The host half carries no work; the browser half does everything. */\nexport function apply(_ctx: Context): void {\n  /* Intentionally empty \u2014 client-only plugin. */\n}\n"],
+  "mappings": ";AAYO,IAAM,OAAO;AAGb,IAAM,SAAmB,CAAC;AAG1B,SAAS,MAAM,MAAqB;AAE3C;",
+  "names": []
+}

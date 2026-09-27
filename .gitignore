@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.log
 .DS_Store
+
+# Upstream clone with its own git history (github.com/oh-my-dsh/dsh-plugin-upgrade-skill);
+# pull it independently: git -C dsh-plugin-upgrade-skill pull
+dsh-plugin-upgrade-skill/

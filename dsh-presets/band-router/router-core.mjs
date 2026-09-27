@@ -191,7 +191,7 @@ export function classifyTask(text) {
 
 /** Per-session mode derived from durable events (resume/reload-safe). */
 export function sessionMode(session) {
-  const events = session?.events
+  const events = session?.snapshotEvents?.()
   if (!Array.isArray(events)) return MODE_WEAK
   const userMsg = events.find((e) => e.type === 'user/message')
   return classifyTask(extractText(userMsg?.data))

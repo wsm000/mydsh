@@ -116,7 +116,7 @@ export function apply(ctx, config) {
     // the tool surface changes once, after the first durable tool/call.
     const sections = applyPersona(assembled.sections, persona)
 
-    if (session.events.some((event) => event.type === 'tool/call')) {
+    if (session.snapshotEvents().some((event) => event.type === 'tool/call')) {
       return { ...assembled, sections, contexts: [] } // promoted: full catalog
     }
 
@@ -151,10 +151,9 @@ export function apply(ctx, config) {
     if (event.type !== 'user/message') return
     const data = event.data ?? {}
     if (data.source?.kind !== 'user') return // only real user messages
-    const agent = ctx.get('agent')
-    const target = agent !== undefined && agent.session === session
-      ? agent
-      : [...agents.values()].find((a) => a.session === session)
+    // The singular `agent` service was removed in 0.1.5-alpha.1; the standing
+    // assemble hook above has already recorded every live agent by session.
+    const target = [...agents.values()].find((a) => a.session === session)
     if (target === undefined || target.inbox === undefined) return
     const mode = modeFor(session.id) ?? sessionMode(session)
     if (bandOf(mode) !== 'weak') return // strong modes need no guidance
@@ -275,8 +274,8 @@ export function apply(ctx, config) {
   }
 
   function currentSession() {
-    const agent = ctx.get('agent')
-    if (agent !== undefined && agent.session !== undefined) return agent.session
+    // 0.1.5-alpha.1 removed the singular `agent` service; the assemble hook
+    // above records every live agent in `agents` by session id.
     const last = [...agents.values()].at(-1)
     return last?.session
   }
