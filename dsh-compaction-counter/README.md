@@ -53,15 +53,24 @@ cd $plugin
 & $node tests/replay-log.mjs ((& $node tools/find-compaction-logs.mjs "$env:USERPROFILE\.dsh\sessions") -split "`t" | ForEach-Object { $_[1] })
 ```
 
-安装进某个 profile（web / desktop 各自独立；两个文件会先备份）：
+安装进 profile（两个文件都会先备份）。**主目标是桌面端**——Desktop 应用的 GUI 跑的就是 `desktop` profile：
 
 ```powershell
+# 1) 桌面端（主目标）
+& $node tools/install-into-profile.mjs "$env:USERPROFILE\.dsh\profiles\desktop" dsh-compaction-counter $plugin
+cd "$env:USERPROFILE\.dsh\profiles\desktop"
+& $node "C:\Users\86150\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\pnpm\bin\pnpm.mjs" install
+
+# 2) Web 端（可选，3080 服务）
 & $node tools/install-into-profile.mjs "$env:USERPROFILE\.dsh\profiles\web" dsh-compaction-counter $plugin
 cd "$env:USERPROFILE\.dsh\profiles\web"
 & $node "C:\Users\86150\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\pnpm\bin\pnpm.mjs" install
 ```
 
-之后让宿主重新加载组成：重启该 profile 的服务，或（对会监视配置的宿主）改动 `cordis.patch.yml` 触发重载。Desktop 应用的 `desktop` profile 由 Electron 进程独占，只能用应用自身的方式重启。
+重载组成的区别：
+
+- **desktop**：该 profile 由 Desktop 应用独占（直接跑 `dsh --profile desktop` 会被拒绝：*managed exclusively by the Electron application*），只能用应用自身的方式。实测结论：**改动 `cordis.patch.yml` 后运行中的宿主会直接热挂载，不需要重启应用**（见下方“验证”）；若某个版本不热挂载，重启一次 Desktop 应用即可。
+- **web**：3080 服务需重启一次才生效，用 `restart-server.ps1 -Reason dsh-compaction-counter`，或你自己终端里的 关闭DSH.bat → 启动DSH.bat。
 
 从 GitHub 仓库安装（不共用本地目录时）：
 
@@ -80,6 +89,8 @@ cd C:\src\mydsh\dsh-compaction-counter
 & $node tools\read-projection-cache.mjs
 # 出现 ver=1 的 compactionStats 行即说明运行中的宿主已加载本插件
 ```
+
+桌面端安装过的副本还要满足宿主的客户端发现链路（`dsh-client-modules` 扫描 Loader 条目 → 校验 `dsh.client` → 解析 `exports["./client"]` → 要求构建产物存在）。这条链路可离线核对：从 `~/.dsh/profiles/desktop/package.json` 的解析根定位到包，校验 `dsh.client` 字段、`lib/client.js` 是否存在且带同 id 的 ModuleLoader 握手、以及宿主半边能否 `import` 出 `apply`/`inject`/`name`。2026-10-12 在桌面端实测全部通过（包解析到本地 link、bundle 6228 B、握手 id 与包名一致、宿主半边导出正常）。
 
 ## 卸载
 

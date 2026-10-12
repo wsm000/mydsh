@@ -33,8 +33,9 @@ npm install -g dsh-web-search-free   # 或 profile 内 link: 本地目录,见 ds
 
 # dsh-compaction-counter (上下文压缩计数)
 # 构建: node mydsh/dsh-compaction-counter/build.mjs
-# 安装: node mydsh/dsh-compaction-counter/tools/install-into-profile.mjs <profileDir> dsh-compaction-counter <pluginDir>
-# 然后在该 profile 目录执行 pnpm install,再让宿主重载组成;详见 dsh-compaction-counter/README.md
+# 安装(主目标是桌面端 desktop profile;web 可选):
+#   node mydsh/dsh-compaction-counter/tools/install-into-profile.mjs "%USERPROFILE%\.dsh\profiles\desktop" dsh-compaction-counter <pluginDir>
+# 然后在该 profile 目录执行 pnpm install;运行中的 Desktop 宿主会热挂载,未生效则重启应用;详见 dsh-compaction-counter/README.md
 ```
 
 ## Development
