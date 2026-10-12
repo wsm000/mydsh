@@ -1,0 +1,7 @@
+{
+  "id": "dsh-compaction-counter",
+  "name": "dsh-compaction-counter",
+  "title": "上下文压缩计数",
+  "description": "显示本会话上下文被压缩了多少次（自动 / 手动 / 失败），以及累计折叠掉的 token 估算",
+  "type": "plugin"
+}
