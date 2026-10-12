@@ -5,6 +5,23 @@
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsm000/mydsh.git",
+    "directory": "dsh-compaction-counter"
+  },
+  "homepage": "https://github.com/wsm000/mydsh/tree/main/dsh-compaction-counter",
+  "bugs": {
+    "url": "https://github.com/wsm000/mydsh/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "compaction",
+    "context"
+  ],
   "exports": {
     ".": {
       "default": "./lib/index.js"

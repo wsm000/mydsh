@@ -2,6 +2,8 @@
 
 DSH Web GUI 插件：在会话标题栏（`conversation.session.header.actions`）显示**本会话的上下文被压缩了多少次**。
 
+> 已发布到自有仓库：[wsm000/mydsh → dsh-compaction-counter](https://github.com/wsm000/mydsh/tree/main/dsh-compaction-counter)（MIT）。
+
 ## 显示什么
 
 | 位置 | 内容 |
@@ -60,6 +62,17 @@ cd "$env:USERPROFILE\.dsh\profiles\web"
 ```
 
 之后让宿主重新加载组成：重启该 profile 的服务，或（对会监视配置的宿主）改动 `cordis.patch.yml` 触发重载。Desktop 应用的 `desktop` profile 由 Electron 进程独占，只能用应用自身的方式重启。
+
+从 GitHub 仓库安装（不共用本地目录时）：
+
+```powershell
+git clone https://github.com/wsm000/mydsh C:\src\mydsh
+cd C:\src\mydsh\dsh-compaction-counter
+& $node build.mjs
+& $node tools\install-into-profile.mjs "$env:USERPROFILE\.dsh\profiles\web" dsh-compaction-counter (Get-Location).Path
+```
+
+`package.json` 未设 `private`，因此也可 `npm publish`（npm 上该名字目前未被占用）；发布前建议先 `npm pack --dry-run` 核对包内容。
 
 验证“宿主是否真的挂上了”（不需要重启也不需要浏览器）——插件的客户端投影值会落进会话投影缓存：
 
