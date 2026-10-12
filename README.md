@@ -14,6 +14,7 @@ My personal [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 
 | `dsh-at-file/` | Codex 风格 `@路径` 引用插件(web GUI 路径选择器,不注入文件内容),v0.4.0 |
 | `dsh-toolkit/` | DSH 零依赖工具包 collection:time / encoding / json / calculator / csv / regex / markdown / diff / stat / schema 十个确定性工具,统一入口一键安装(main 快照) |
 | `dsh-web-search-free/` | 免密钥多后端搜索提供方(`free-web`):Bing → Mojeek → Baidu → So.com 故障转移 + 投毒检测,DeepSeek 原生 web_search 欠费替代,已发布 npm `dsh-web-search-free` |
+| `dsh-compaction-counter/` | 上下文压缩计数:宿主会话投影折叠 `compaction/summary` / `end(error)` / `prune`,会话标题栏 chip 显示「压缩 N 次」+ 失败徽标 + 明细 tooltip;含折叠单测、client bundle 握手测试与 55 份真实日志回放校验 |
 
 > `routing-suite-research/.gitmodules` 引用上游 GitHub 仓库(dsh-super-injector / dsh-router-standard),内容为当时快照,未以 submodule 形式纳入。
 > `dsh-at-file/` 与 `dsh-toolkit/` 为 [omdsh-dev](https://github.com/omdsh-dev) 上游仓库的发布态快照(v0.4.0 / main),本地开发与安装即以本目录内容为准;安装命令见各子目录 README。
@@ -29,6 +30,11 @@ dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/re
 # dsh-web-search-free (free-web,免密钥)
 npm install -g dsh-web-search-free   # 或 profile 内 link: 本地目录,见 dsh-web-search-free/README.md
 # 然后按插件 README 在 profile cordis.patch.yml 挂载并把 web.searchProvider 切到 free-web
+
+# dsh-compaction-counter (上下文压缩计数)
+# 构建: node mydsh/dsh-compaction-counter/build.mjs
+# 安装: node mydsh/dsh-compaction-counter/tools/install-into-profile.mjs <profileDir> dsh-compaction-counter <pluginDir>
+# 然后在该 profile 目录执行 pnpm install,再让宿主重载组成;详见 dsh-compaction-counter/README.md
 ```
 
 ## Development
